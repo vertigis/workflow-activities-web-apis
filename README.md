@@ -12,7 +12,7 @@ These activities are designed to work with VertiGIS Studio Workflow versions `5.
 ## Usage
 To use these activities in [VertiGIS Studio Workflow Designer](https://apps.vertigisstudio.com/workflow/designer/) you need to register an activity pack and then add the activities to a workflow.
 
-### Register the Utility Network activity pack
+### Register the Web APIs activity pack
 
 1. Sign in to ArcGIS Online or Portal for ArcGIS
 1. Go to **My Content**
