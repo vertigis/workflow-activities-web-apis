@@ -34,7 +34,7 @@ interface DispatchCustomEventOutputs {
  * @supportedApps EXB, GWV, WAB, GVH
  * @helpUrl https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent
  */
-export default class DispatchCustomEventActivity implements IActivityHandler {
+export default class DispatchCustomEvent implements IActivityHandler {
     execute(inputs: DispatchCustomEventInputs): DispatchCustomEventOutputs {
         const { type, ...other } = inputs;
         if (!type) {
