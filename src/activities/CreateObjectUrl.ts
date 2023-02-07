@@ -30,7 +30,7 @@ interface CreateObjectUrlInputs {
      * @description The content.
      * @required
      */
-    content: Blob;
+    content: File | Blob;
 
     /**
      * @displayName Allowed MIME Types
