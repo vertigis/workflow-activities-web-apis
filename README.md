@@ -23,10 +23,11 @@ To use these activities in [VertiGIS Studio Workflow Designer](https://apps.vert
     - URL: The URL to this activity pack manifest
         - Use https://unpkg.com/@vertigis/workflow-activities-web-apis/activitypack.json for the latest version
         - Use https://unpkg.com/@vertigis/workflow-activities-web-apis@2.1.0/activitypack.json for a specific version
+        - Use https://localhost:5000/activitypack.json for a local development version
     - Title: Your desired title
     - Tags: Must include `geocortex-workflow-activity-pack`
 1. Reload [VertiGIS Studio Workflow Designer](https://apps.vertigisstudio.com/workflow/designer/)
-1. These activities will now appear in the activity toolbox in an `Web APIs` category
+1. These activities will now appear in the activity toolbox in a `Web APIs` category
 
 ## Development
 
