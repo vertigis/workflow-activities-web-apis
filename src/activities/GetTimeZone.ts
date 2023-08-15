@@ -14,7 +14,7 @@ interface GetTimeZoneOutputs {
  * @description Gets time zone of the end user as reported by the web browser.
  * @clientOnly
  * @supportedApps EXB, GWV, WAB, GVH
- * @helpUrl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/resolvedOptions#timezone
+ * @helpUrl https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone
  */
 export default class GetTimeZone implements IActivityHandler {
     execute(): GetTimeZoneOutputs {
