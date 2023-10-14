@@ -1,5 +1,4 @@
 import type { IActivityHandler } from "@geocortex/workflow/runtime";
-import { IActivityContext } from "@geocortex/workflow/runtime/IActivityHandler";
 
 interface ListenForEventOnceInputs {
     /**
@@ -24,35 +23,43 @@ interface ListenForEventOnceOutputs {
 /**
  * @category Web APIs
  * @defaultName event
- * @description 
+ * @description Adds an event listener for the specified event type.
  * @clientOnly
  * @supportedApps EXB, GWV, WAB, GVH
  */
 export default class ListenForEventOnce implements IActivityHandler {
-    async execute(inputs: ListenForEventOnceInputs, context: IActivityContext): Promise<ListenForEventOnceOutputs> {
+    async execute(
+        inputs: ListenForEventOnceInputs
+    ): Promise<ListenForEventOnceOutputs> {
         const { timeout = 0, type } = inputs;
         if (!type) {
             throw new Error("type is required");
         }
 
         const promise = new Promise<Event>((resolve, reject) => {
-            let timer: string | number | NodeJS.Timeout | undefined;
-            const listener = (e: Event) => {
-                clearTimeout(timer);
-                resolve(e);
+            const signal = timeout
+                ? AbortSignal.timeout(timeout)
+                : new AbortSignal();
+            signal.onabort = () => {
+                reject(
+                    new Error(`Activity timed out waiting for '${type}' event.`)
+                );
             };
-            window.addEventListener(type, listener, {
-                once: true,
-            });
-            if (timeout > 0) {
-                timer = setTimeout(() => {
-                    window.removeEventListener(type, listener);
-                    reject(new Error(`Activity timed out waiting for '${type}' event.`));
-                }, timeout);
-            }
+
+            addEventListener(
+                type,
+                (e: Event) => {
+                    signal.onabort = null;
+                    resolve(e);
+                },
+                {
+                    once: true,
+                    signal,
+                }
+            );
         });
         return {
             result: await promise,
-        }
+        };
     }
 }
