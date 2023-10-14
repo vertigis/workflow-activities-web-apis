@@ -8,14 +8,14 @@ interface ListenForEventOnceInputs {
     type?: string;
 
     /**
-     * @description The number of milliseconds to wait for the event.
+     * @description The number of milliseconds to wait for the event. If the timeout is reached the activity will throw an error.
      */
     timeout?: number;
 }
 
 interface ListenForEventOnceOutputs {
     /**
-     * @description The result of the activity.
+     * @description The captured event.
      */
     result: Event;
 }
