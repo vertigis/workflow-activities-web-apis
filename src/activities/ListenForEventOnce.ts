@@ -37,9 +37,7 @@ export default class ListenForEventOnce implements IActivityHandler {
         }
 
         const promise = new Promise<Event>((resolve, reject) => {
-            const signal = timeout
-                ? AbortSignal.timeout(timeout)
-                : new AbortSignal();
+            const signal = AbortSignal.timeout(timeout > 0 ? timeout : Number.MAX_SAFE_INTEGER);
             signal.onabort = () => {
                 reject(
                     new Error(`Activity timed out waiting for '${type}' event.`)
