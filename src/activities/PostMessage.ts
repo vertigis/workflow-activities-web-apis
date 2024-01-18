@@ -1,6 +1,8 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface PostMessageInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @description The message to send.
      * @required
@@ -17,6 +19,8 @@ interface PostMessageInputs {
      * @description Whether to wait for a reply from the origin frame (via MessageChannel ports). The default is false.
      */
     awaitReply: boolean;
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
 interface PostMessageOutputs {
@@ -44,15 +48,16 @@ export default class PostMessage implements IActivityHandler {
             throw new Error("origin is required");
         }
 
-        const owner: Window | undefined = window.parent === window ? window.opener : window.parent;
+        const owner: Window | undefined =
+            window.parent === window ? window.opener : window.parent;
         if (!owner) {
             throw new Error(
-                "The Post Message activity requires a parent window or window opener."
+                "The Post Message activity requires a parent window or window opener.",
             );
-        } 
-        
+        }
+
         if (awaitReply) {
-            const result = await new Promise(resolve => {
+            const result = await new Promise((resolve) => {
                 const channel = new MessageChannel();
                 channel.port1.onmessage = ({ data }) => {
                     channel.port1.close();
@@ -67,6 +72,5 @@ export default class PostMessage implements IActivityHandler {
             owner.postMessage(message, origin);
             return {};
         }
-
     }
 }

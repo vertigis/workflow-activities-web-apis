@@ -1,6 +1,8 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface OpenWindowInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @displayName URL
      * @description The URL or path of the resource to be loaded.
@@ -15,10 +17,11 @@ interface OpenWindowInputs {
      * @description A comma-separated list of window features in the form name=value.
      */
     windowFeatures?: string;
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
-interface OpenWindowOutputs {
-}
+interface OpenWindowOutputs {}
 
 /**
  * @category Web APIs
