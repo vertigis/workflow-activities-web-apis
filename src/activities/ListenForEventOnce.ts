@@ -1,4 +1,4 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface ListenForEventOnceInputs {
     /**
@@ -29,7 +29,7 @@ interface ListenForEventOnceOutputs {
  */
 export default class ListenForEventOnce implements IActivityHandler {
     async execute(
-        inputs: ListenForEventOnceInputs
+        inputs: ListenForEventOnceInputs,
     ): Promise<ListenForEventOnceOutputs> {
         const { timeout = 0, type } = inputs;
         if (!type) {
@@ -37,10 +37,14 @@ export default class ListenForEventOnce implements IActivityHandler {
         }
 
         const promise = new Promise<Event>((resolve, reject) => {
-            const signal = AbortSignal.timeout(timeout > 0 ? timeout : Number.MAX_SAFE_INTEGER);
+            const signal = AbortSignal.timeout(
+                timeout > 0 ? timeout : Number.MAX_SAFE_INTEGER,
+            );
             signal.onabort = () => {
                 reject(
-                    new Error(`Activity timed out waiting for '${type}' event.`)
+                    new Error(
+                        `Activity timed out waiting for '${type}' event.`,
+                    ),
                 );
             };
 
@@ -53,7 +57,7 @@ export default class ListenForEventOnce implements IActivityHandler {
                 {
                     once: true,
                     signal,
-                }
+                },
             );
         });
         return {

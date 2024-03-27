@@ -1,6 +1,8 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface HashMessageInputs {
+    /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+
     /**
      * @description The message to hash.
      * @required
@@ -11,6 +13,8 @@ interface HashMessageInputs {
      * @description The hash algorithm to use. The default is SHA-256.
      */
     algorithm?: "SHA-256" | "SHA-384" | "SHA-512" | string;
+
+    /* eslint-enable @typescript-eslint/no-redundant-type-constituents */
 }
 
 interface HashMessageOutputs {
@@ -38,10 +42,18 @@ export default class HashMessage implements IActivityHandler {
     }
 }
 
-async function digestMessage(algorithm: string, message: string | BufferSource) {
-    const data = typeof message === "string" ? new TextEncoder().encode(message) : message;
+async function digestMessage(
+    algorithm: string,
+    message: string | BufferSource,
+) {
+    const data =
+        typeof message === "string"
+            ? new TextEncoder().encode(message)
+            : message;
     const hashBuffer = await crypto.subtle.digest(algorithm, data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join('');
+    const hashHex = hashArray
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
     return hashHex;
 }

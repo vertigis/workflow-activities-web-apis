@@ -1,4 +1,4 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface SendBeaconInputs {
     /**
@@ -35,9 +35,9 @@ export default class SendBeacon implements IActivityHandler {
         }
 
         const result = navigator.sendBeacon(url, data);
-        
+
         return {
-            result
+            result,
         };
     }
 }

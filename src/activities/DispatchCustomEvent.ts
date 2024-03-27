@@ -1,4 +1,4 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface DispatchCustomEventInputs {
     /**
@@ -45,7 +45,7 @@ export default class DispatchCustomEvent implements IActivityHandler {
             ...other,
         });
         const result = dispatchEvent(event);
-        
+
         return {
             result,
         };

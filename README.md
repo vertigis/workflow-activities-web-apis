@@ -7,7 +7,7 @@ This project contains activities for interacting with the [JavaScript Web APIs](
 
 ### VertiGIS Studio Workflow Versions
 
-These activities are designed to work with VertiGIS Studio Workflow versions `5.30.1` and above.
+These activities are designed to work with VertiGIS Studio Workflow versions `5.37` and above.
 
 ## Usage
 To use these activities in [VertiGIS Studio Workflow Designer](https://apps.vertigisstudio.com/workflow/designer/) you need to register an activity pack and then add the activities to a workflow.
@@ -21,8 +21,9 @@ To use these activities in [VertiGIS Studio Workflow Designer](https://apps.vert
     - Purpose: `Ready To Use`
     - API: `JavaScript`
     - URL: The URL to this activity pack manifest
-        - Use https://unpkg.com/@vertigis/workflow-activities-web-apis/activitypack.json for the latest version
         - Use https://unpkg.com/@vertigis/workflow-activities-web-apis@2.1.0/activitypack.json for a specific version
+        - Use https://unpkg.com/@vertigis/workflow-activities-web-apis@2/activitypack.json for the latest revision of a specific major version
+        - Use https://unpkg.com/@vertigis/workflow-activities-web-apis/activitypack.json for the latest version (not recommended for production use)
         - Use https://localhost:5000/activitypack.json for a local development version
     - Title: Your desired title
     - Tags: Must include `geocortex-workflow-activity-pack`

@@ -1,4 +1,4 @@
-import type { IActivityHandler } from "@geocortex/workflow/runtime";
+import type { IActivityHandler } from "@vertigis/workflow";
 
 interface DownloadFileInputs {
     /**
@@ -13,8 +13,7 @@ interface DownloadFileInputs {
     fileName?: string;
 }
 
-interface DownloadFileOutputs {
-}
+interface DownloadFileOutputs {}
 
 /**
  * @category Web APIs
@@ -33,7 +32,8 @@ export default class DownloadFile implements IActivityHandler {
         try {
             const downloadLink: HTMLAnchorElement = document.createElement("a");
             downloadLink.href = blobUrl;
-            downloadLink.download = fileName || (file instanceof File && file.name) || "download";
+            downloadLink.download =
+                fileName || (file instanceof File && file.name) || "download";
 
             const clickEvent = new MouseEvent("click", {
                 view: window,
